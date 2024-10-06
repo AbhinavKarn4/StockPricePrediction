@@ -8,12 +8,12 @@ from collections import deque
 import numpy as np
 import pandas as pd
 import random
+import matplotlib.pyplot as plt
 
 # Set seed to ensure reproducibility
 np.random.seed(314)
 tf.random.set_seed(314)
 random.seed(314)
-
 
 def shuffle_in_unison(a, b):
     # Shuffle two arrays in the same way
@@ -213,3 +213,13 @@ if __name__ == "__main__":
     # Predict future stock prices (for 5 days into the future)
     predicted = model.predict(X_test)
     print("Predicted future prices:", predicted[:5])  # Show the first 5 predictions
+
+    # Plot actual vs predicted prices
+    plt.figure(figsize=(10, 6))
+    plt.plot(y_test.flatten(), label="Actual Prices", color="blue")
+    plt.plot(predicted.flatten(), label="Predicted Prices", color="red")
+    plt.title('Actual vs Predicted Stock Prices')
+    plt.xlabel('Time')
+    plt.ylabel('Price')
+    plt.legend()
+    plt.show()
